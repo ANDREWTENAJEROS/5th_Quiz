@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e9d0b6</color>
+    <color name="colorPrimaryDark">#a98f76</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="Teal">#47c69b</color>
+    <color name="Tan">#deae7c</color>
+    <color name="LightTan">#fff2df</color>
+
+
+</resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LightTan"
+    tools:context="com.android.andrewtenajeros.bugtongbugtong.bugtongActivity">
+
+    <EditText
+        android:id="@+id/editText_question"
+        android:layout_width="372dp"
+        android:layout_height="164dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="128dp"
+        android:ems="10"
+        android:enabled="false"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:paddingLeft="20dp"
+        android:singleLine="false"
+        android:text="Question"
+        android:textAlignment="center"
+        android:textColor="@color/Tan"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBarToday"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="115dp"
+        android:layout_height="112dp"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:indeterminate="false"
+        android:max="48"
+        android:progress="30"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:rotation="-90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="50"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarToday"
+        app:layout_constraintStart_toStartOf="@+id/progressBarToday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_A"
+        android:layout_width="165dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_corners"
+        android:text="Option A"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_C"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_question" />
+
+    <Button
+        android:id="@+id/button_B"
+        android:layout_width="165dp"
+        android:layout_height="53dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corners"
+        android:text="Option B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/button_A"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_A"
+        app:layout_constraintTop_toBottomOf="@+id/button_A" />
+
+    <Button
+        android:id="@+id/button_C"
+        android:layout_width="165dp"
+        android:layout_height="53dp"
+
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_corners"
+        android:text="Option C"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_A"
+        app:layout_constraintTop_toBottomOf="@+id/editText_question" />
+
+    <Button
+        android:id="@+id/button_D"
+        android:layout_width="165dp"
+        android:layout_height="53dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corners"
+        android:text="Option D"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/button_C"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/button_C"
+        app:layout_constraintTop_toBottomOf="@+id/button_C" />
+
+    <Button
+        android:id="@+id/button_stop"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="79dp"
+
+        android:layout_height="47dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:text="STOP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView_score" />
+
+    <TextView
+        android:id="@+id/textView_currentUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="Username"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toStartOf="@+id/progressBarToday"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="74dp"
+        android:text="00"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarToday"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/progressBarToday"
+        app:layout_constraintTop_toTopOf="@+id/progressBarToday" />
+
+</android.support.constraint.ConstraintLayout>
