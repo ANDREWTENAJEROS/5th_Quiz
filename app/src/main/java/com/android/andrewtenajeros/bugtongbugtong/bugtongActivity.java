@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class bugtongActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class bugtongActivity extends AppCompatActivity {
 
 
     Button button_stop, button_A, button_B, button_C, button_D;
-    TextView textView_time, textView_currentUsername, textView_score;
+    TextView textView_time, textView_currentUsername, textView_score,debug;
     EditText editText_question;
 
     DatabaseHelper databaseHelper;
@@ -44,6 +45,7 @@ public class bugtongActivity extends AppCompatActivity {
         button_B = (Button) findViewById(R.id.button_B);
         button_C = (Button) findViewById(R.id.button_C);
         button_D = (Button) findViewById(R.id.button_D);
+        debug = (TextView) findViewById(R.id.debug);
         bugtong = new bugtongs();
 //
 //        final ProgressBar mProgressBar;
@@ -77,13 +79,13 @@ public class bugtongActivity extends AppCompatActivity {
 
         mProgressBar=(ProgressBar)findViewById(R.id.progressBarToday);
         mProgressBar.setProgress(i[0]);
-        mCountDownTimer=new CountDownTimer(30000,1000) {
+        mCountDownTimer=new CountDownTimer(120000,1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.v("Log_tag", "Tick of Progress"+ i[0] + millisUntilFinished);
                 i[0]++;
-                mProgressBar.setProgress((int) i[0] *100/(62000/1000));
+                mProgressBar.setProgress((int) i[0] *100/(202000/1000));
 
             }
 
@@ -102,7 +104,7 @@ public class bugtongActivity extends AppCompatActivity {
         currentUsername = uicGetSharedPreferenceValue("userInfo","username");
         textView_currentUsername.setText(currentUsername);
 
-        uicCountDown(textView_time, 31);
+        uicCountDown(textView_time, 121);
         generatebugtong();
         bugtongs.SCORE = 0;
 
@@ -155,38 +157,44 @@ public class bugtongActivity extends AppCompatActivity {
         }else{
             bugtongs.questionShown++;
         }
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                editText_question.setText(bugtong.getbugtong(currentIndex));
 
-            }
-        }, 500);
-        button_A.setText(bugtong.getChoices(currentIndex,0));
-        button_B.setText(bugtong.getChoices(currentIndex,1));
-        button_C.setText(bugtong.getChoices(currentIndex,2));
-        button_D.setText(bugtong.getChoices(currentIndex,3));
+        editText_question.setText(bugtong.getbugtong(bugtongs.questionShown));
+        button_A.setText(bugtong.getChoices(bugtongs.questionShown,0));
+        button_B.setText(bugtong.getChoices(bugtongs.questionShown,1));
+        button_C.setText(bugtong.getChoices(bugtongs.questionShown,2));
+        button_D.setText(bugtong.getChoices(bugtongs.questionShown,3));
+//        uicToastMessage(bugtong.bugtong[bugtongs.questionShown]+bugtong.answer[bugtongs.questionShown]);
+
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//            }
+//        }, 500);
+
 
     }
 
     public void checkUserAnswer(String choice, final View view){
-        int currentIndex = bugtongs.questionShown-1;
+        int currentIndex = bugtongs.questionShown;
+
         if(bugtong.answer[currentIndex].equalsIgnoreCase(choice)){
-//            uicToastMessage(choice + bugtong.answer[currentIndex]);
+//            uicToastMessage(bugtong.answer[currentIndex]+" "+choice);
             view.setBackgroundResource(R.drawable.rounded_corners_right);
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    setAnswerCorrect();
+
                     view.setBackgroundResource(R.drawable.rounded_corners);
+                    bugtongs.SCORE += 10;
+                    textView_score.setText(bugtongs.SCORE+"");
 
                 }
             }, 500);
+            setAnswerCorrect();
         }else{
-            bugtongs.SCORE -= 10;
-//            uicToastMessage("Wrong! Correct answer is " + bugtong.answer[currentIndex]);
+            bugtongs.SCORE -= 5;
             view.setBackgroundResource(R.drawable.rounded_corners_wrong);
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -204,7 +212,7 @@ public class bugtongActivity extends AppCompatActivity {
 
     public void setAnswerCorrect(){
 //        uicToastMessage("Correct");
-        bugtongs.SCORE += (10 + (int) remainingSeconds);
+
         generatebugtong();
     }
 
@@ -254,5 +262,24 @@ public class bugtongActivity extends AppCompatActivity {
         saveUserData();
         startActivity(new Intent(bugtongActivity.this, MainActivity.class));
 
+    }
+
+    private static Bundle bundle = new Bundle();
+//    ToggleButton tg=(ToggleButton)findViewById(R.id.toggleButton);
+    boolean play;
+    public void onPause() {
+        super.onPause();
+
+        bundle.putBoolean("ToggleButtonState", play);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        tg.setChecked(bundle.getBoolean("ToggleButtonState",false)); button
+    }
+
+    public void togglesound(View view) {
+        play = ((ToggleButton) view).isChecked();
     }
 }

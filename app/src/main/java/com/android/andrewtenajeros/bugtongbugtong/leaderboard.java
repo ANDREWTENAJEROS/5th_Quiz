@@ -37,7 +37,7 @@ public class leaderboard extends AppCompatActivity {
         String currentUsername = uicGetSharedPreferenceValue("userInfo", "username");
         button_playAgain.setText("PLAY AGAIN " + currentUsername);
 
-        bugtongs.SCORE = 50;
+        bugtongs.SCORE = 10;
         bugtongs.questionShown = 0;
 
         button_playAgain.setOnClickListener(new View.OnClickListener() {
