@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +15,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    View focusView = null;
+    boolean cancel;
 
     EditText editText_username;
     Button button_start, button_tally;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         editText_username = (EditText) findViewById(R.id.editText_username);
         button_start = (Button) findViewById(R.id.button_start);
+
+
 //        button_tally = (Button) findViewById(R.id.button_tally);
 //
 //        if(uicGetSharedPreferenceValue("userInfo", "username").isEmpty()){
@@ -35,11 +39,18 @@ public class MainActivity extends AppCompatActivity {
         button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uicSetSharedPreferenceValue("userInfo", "username", editText_username.getText().toString());
-                Intent intent = new Intent(MainActivity.this,bugtongActivity.class);
-                startActivity(intent);
+                final String username = editText_username.getText().toString();
+                if (TextUtils.isEmpty(username)) {
+                    editText_username.setError("Required");
+                    cancel = true;
+                    focusView =editText_username;
+                }else{
+                    cancel = false;
+                    login();
+                }
             }
         });
+
 //
 //        button_tally.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -50,6 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void login(){
+        button_start.setError(null);
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            uicSetSharedPreferenceValue("userInfo", "username", editText_username.getText().toString());
+            Intent intent = new Intent(MainActivity.this,bugtongActivity.class);
+            startActivity(intent);
+        }
     }
     public void leaderboard(View view){
         Intent intent = new Intent(MainActivity.this,leaderboard.class);

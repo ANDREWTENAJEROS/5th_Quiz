@@ -47,6 +47,7 @@ public class bugtongActivity extends AppCompatActivity {
         button_D = (Button) findViewById(R.id.button_D);
         debug = (TextView) findViewById(R.id.debug);
         bugtong = new bugtongs();
+
 //
 //        final ProgressBar mProgressBar;
 //        final CountDownTimer mCountDownTimer;
@@ -102,7 +103,7 @@ public class bugtongActivity extends AppCompatActivity {
 
         //String currentUsername = uicGetIntentExtra("currentUsername");
         currentUsername = uicGetSharedPreferenceValue("userInfo","username");
-        textView_currentUsername.setText(currentUsername);
+        textView_currentUsername.setText("Are you smarter than a 5th grade "+currentUsername+"?");
 
         uicCountDown(textView_time, 121);
         generatebugtong();

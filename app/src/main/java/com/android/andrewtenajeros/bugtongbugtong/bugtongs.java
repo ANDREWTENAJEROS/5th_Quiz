@@ -12,7 +12,7 @@ public class bugtongs {
     public String answer[];
 
     public final int MAX_SIZE = 21;          //Array maximum size
-    public final int TOTAL_SIZE = 20;        //Total questions set for the user
+    public final int TOTAL_SIZE = 6;        //Total questions set for the user
     public static int questionShown = 0;    //Counter for total questions being shown to the user
     public static int SCORE = 10;
     public bugtongs() {

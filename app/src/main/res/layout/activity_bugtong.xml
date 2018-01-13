@@ -26,6 +26,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="#cbcff1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
@@ -38,8 +39,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:indeterminate="false"
-        android:max="48"
-        android:progress="30"
+        android:max="100"
+        android:progress="80"
         android:progressDrawable="@drawable/circular_progress_bar"
         android:rotation="-90"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,22 +125,27 @@
 
         android:layout_height="64dp"
         android:layout_marginEnd="32dp"
-        android:text="STOP"
+        android:fontFamily="@font/fredoka_one"
+        android:text="QUIT"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_score" />
 
     <TextView
         android:id="@+id/textView_currentUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="103dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:text="Username"
-        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/fredoka_one"
+        android:text="Are you smarter than a 5th grader username?"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toStartOf="@+id/progressBarToday"
-        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
